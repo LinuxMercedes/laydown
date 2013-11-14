@@ -1,0 +1,87 @@
+grammar LayDown
+
+# root node
+# chomps extra newlines
+	rule laydown
+		((header / paragraph )* ([\n] / eof))
+	end
+
+# A paragraph
+	rule paragraph
+	  (line+ ([\n] / eof))
+	end
+
+# Lines are text or inline code plus a newline
+	rule line
+		((text / inlineblock)+ ([\n] / eof))
+	end
+
+# Text is everything that doesn't contain an unescaped [
+# TODO: probably a lot more format parsing here
+	rule text
+		(('\[' / [^\[\n])+)
+	end
+
+# An inline block looks like one of the following:
+# []
+# [some inline stuff]
+# [inline stuff with escaped \]]
+# [code-directive, actual code]
+# [code-directive, actual code, with escaped \]]
+	rule inlineblock
+		('[' ([^\s,]+ ',')? ('\]' / [^\]\n])* ']')
+	end
+
+# A header
+	rule header
+		(h1 / h2 / h3 / h4 / h5 / h6)
+	end
+
+# H1 can be denoted either as
+# line of text
+# ============
+# -or-
+# # line of text
+# -or-
+# # line of text #
+	rule h1
+		(line '='+ [\n]) / ('#' [\s]+ (text / inlineblock)+ '#'* [\n])
+	end
+
+# H2 can be denoted either as
+# line of text
+# ------------
+# -or-
+# ## line of text
+# -or-
+# ## line of text ####
+	rule h2
+		(line '-'+ [\n] / '##' [\s]+ (text / inlineblock)+ '#'* [\n])
+	end
+
+# H3 and on can be written as
+# ### line of text
+# -or-
+# ### line of text #####
+	rule h3
+	  ('###' [\s]+ (text / inlineblock)+ '#'* [\n])
+	end
+
+	rule h4
+	  ('####' [\s]+ (text / inlineblock)+ '#'* [\n])
+	end
+
+	rule h5
+	  ('#####' [\s]+ (text / inlineblock)+ '#'* [\n])
+	end
+
+	rule h6
+	  ('######' [\s]+ (text / inlineblock)+ '#'* [\n])
+	end
+
+# End of file just means there's nothing left to parse
+	rule eof
+		(!.)
+	end
+
+end
