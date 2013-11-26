@@ -1,0 +1,12 @@
+- Lists
+- Code blocks (indent 4 spaces / 1 tab)
+- Horizontal Rules?
+- Citations
+- URLs
+- Intra-doc links
+- Text formatting (bold/italic)
+- Images
+- Citations
+- Literal latex embedding
+- Code syntax highlighting
+- A prettier table syntax
