@@ -13,13 +13,13 @@ grammar LayDown
 
 # Lines are text or inline code plus a newline
 	rule line
-		((text / inlineblock)+ ([\n] / eof))
+		((text / inlineblock / inlinemath)+ ([\n] / eof))
 	end
 
 # Text is everything that doesn't contain an unescaped [
 # TODO: probably a lot more format parsing here
 	rule text
-		(('\[' / [^\[\n])+)
+		(('\[' / '\$' / [^$\[\n])+)
 	end
 
 # An inline block looks like one of the following:
@@ -30,6 +30,13 @@ grammar LayDown
 # [code-directive, actual code, with escaped \]]
 	rule inlineblock
 		('[' ([^\s,]+ ',')? ('\]' / [^\]\n])* ']')
+	end
+
+# Inline math looks like
+# $ math syntax $
+# $$
+	rule inlinemath
+		('$' ('\$' / [^$\n])* '$')
 	end
 
 # A header

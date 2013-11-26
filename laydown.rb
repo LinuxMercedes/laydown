@@ -5,11 +5,8 @@ Treetop.load "laydown"
 
 parser = LayDownParser.new
 
-# BROKEN:
-#
-
 text = <<'END'
-testing some inline \[stuff [code, asdfasdf with escaped \]] end of line
+testing some inline $ math \$ stuff $ \[stuff [code, asdfasdf with escaped \]] end of line
 
 END
 
