@@ -1,3 +1,4 @@
+- Make the syntax concrete then modify or design the grammar to fit it.
 - Lists
 - Code blocks (indent 4 spaces / 1 tab)
 - Horizontal Rules?
