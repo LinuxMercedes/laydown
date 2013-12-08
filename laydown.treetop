@@ -16,10 +16,10 @@ grammar LayDown
 		((text / inlineblock / inlinemath)+ ([\n] / eof))
 	end
 
-# Text is everything that doesn't contain an unescaped [
+# Text is everything that doesn't contain an unescaped ` or $.
 # TODO: probably a lot more format parsing here
 	rule text
-		(('\[' / '\$' / [^$\[\n])+)
+		(('\`' / '\$' / [^$`\n])+)
 	end
 
 # An inline block looks like one of the following:
@@ -29,7 +29,7 @@ grammar LayDown
 # [code-directive, actual code]
 # [code-directive, actual code, with escaped \]]
 	rule inlineblock
-		('[' ([^\s,]+ ',')? ('\]' / [^\]\n])* ']')
+		('`' ([^\s,]+ ',')? ('\`' / [^`\n])* '`')
 	end
 
 # Inline math looks like

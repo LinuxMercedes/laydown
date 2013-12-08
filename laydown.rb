@@ -8,7 +8,7 @@ parser = LayDownParser.new
 text = <<'END'
 this text is in a beautiful paragraph and there's nothing you can do about it.
 
-And this is another paragraph.
+And this is another `inline, inlined code` paragraph.
 
 ```CODE
 BUT THIS IS A CODE BLOCK

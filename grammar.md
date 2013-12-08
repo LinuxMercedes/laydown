@@ -39,7 +39,3 @@ Completed Features
 * Inline math
 * Code blocks
 
-Inline Blocks
--------------
-Currently implemented as [] instead of ``, which may/will need to get changed.
-
