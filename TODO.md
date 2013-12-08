@@ -1,3 +1,4 @@
+- Make the syntax concrete then modify or design the grammar to fit it.
 - Lists
 - Horizontal Rules?
 - Citations
