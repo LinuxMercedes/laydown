@@ -3,7 +3,7 @@ grammar LayDown
 # root node
 # chomps extra newlines
 	rule laydown
-		((header / paragraph )* ([\n] / eof))
+		((header / codeblock / paragraph)* ([\n] / eof))
 	end
 
 # A paragraph
@@ -84,6 +84,11 @@ grammar LayDown
 
 	rule h6
 	  ('######' [\s]+ (text / inlineblock)+ '#'* [\n])
+	end
+
+	rule codeblock
+		#(([\n] '```' [^\s\n]* [\n] (!([\n] '```' [\n]) . )* [\n]	'```' [\n]) / ([\n] (('    ' / [\t]) (![\n] .*) [\n]) [\n]))
+		(('```' [^\s\n]* "\n" (!("\n```\n\n") . )* "\n```\n\n") / ((('    ' / [\t]) (![\n] .)* [\n])+ [\n]))
 	end
 
 # End of file just means there's nothing left to parse

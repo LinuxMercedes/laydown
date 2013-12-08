@@ -1,5 +1,4 @@
 - Lists
-- Code blocks (indent 4 spaces / 1 tab)
 - Horizontal Rules?
 - Citations
 - URLs
