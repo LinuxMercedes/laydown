@@ -23,11 +23,11 @@ grammar LayDown
 	end
 
 # An inline block looks like one of the following:
-# []
-# [some inline stuff]
-# [inline stuff with escaped \]]
-# [code-directive, actual code]
-# [code-directive, actual code, with escaped \]]
+# ``
+# `some inline stuff`
+# `inline stuff with escaped \``
+# `code-directive, actual code`
+# `code-directive, actual code, with escaped \``
 	rule inlineblock
 		('`' ([^\s,]+ ',')? ('\`' / [^`\n])* '`')
 	end
@@ -87,7 +87,6 @@ grammar LayDown
 	end
 
 	rule codeblock
-		#(([\n] '```' [^\s\n]* [\n] (!([\n] '```' [\n]) . )* [\n]	'```' [\n]) / ([\n] (('    ' / [\t]) (![\n] .*) [\n]) [\n]))
 		(('```' [^\s\n]* "\n" (!("\n```\n\n") . )* "\n```\n\n") / ((('    ' / [\t]) (![\n] .)* [\n])+ [\n]))
 	end
 
