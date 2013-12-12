@@ -1,4 +1,6 @@
 - Make the syntax concrete then modify or design the grammar to fit it.
+- Write unit tests for the syntax as it is implemented.
+- Rewrite 
 - Lists
 - Horizontal Rules?
 - Citations
