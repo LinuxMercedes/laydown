@@ -41,6 +41,18 @@ END
 		expect(parser.parse(text)).to_not eq(nil)
 	end
 
+	it "parses inline math" do
+		parser = LayDownParser.new
+
+		text =<<'END'
+This is a paragraph with some $inline math code$.
+It also has lines with \$ escapes.
+Annnnd, surprise surprise, it has $math \$ equations$ with escapes too!
+END
+	
+		expect(parser.parse(text)).to_not eq(nil)
+	end
+
 	it "parses h1 header" do
 		parser = LayDownParser.new
 
