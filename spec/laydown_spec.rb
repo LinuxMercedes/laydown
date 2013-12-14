@@ -41,4 +41,22 @@ END
 		expect(parser.parse(text)).to_not eq(nil)
 	end
 
+	it "parses h1 header" do
+		parser = LayDownParser.new
+
+		text =<<'END'
+This is a paragraph.
+
+This is an underlined header
+============================
+
+# This is a tagged header
+
+# This is a header with a closing tag #
+
+That's it.
+END
+		
+		expect(parser.parse(text)).to_not eq(nil)
+	end
 end
