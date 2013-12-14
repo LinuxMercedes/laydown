@@ -41,7 +41,7 @@ grammar LayDown
 
 # A header
 	rule header
-		(h1 / h2 / h3 / h4 / h5 / h6)
+		(h1 / h2 / h3 / h4 / h5 / h6) [\n]*
 	end
 
 # H1 can be denoted either as
