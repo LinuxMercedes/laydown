@@ -154,4 +154,31 @@ END
 		
 		expect(parser.parse(text)).to_not eq(nil)
 	end
+
+	it "parses code blocks" do
+		parser = LayDownParser.new
+
+		text = <<'END'
+this text is in a beautiful paragraph and there's nothing you can do about it.
+
+And this is another `inline, inlined code` paragraph.
+
+```CODE
+BUT THIS IS A CODE BLOCK
+```
+
+INTERVENING PARAGRAPH
+
+    And here is another
+	and it might have a couple
+	different ways of handling identation
+    which vim makes kind of confusing
+
+and this is a closing paragraph.
+
+END
+
+		expect(parser.parse(text)).to_not eq(nil)
+	end
+
 end
