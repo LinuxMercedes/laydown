@@ -53,7 +53,7 @@ END
 		expect(parser.parse(text)).to_not eq(nil)
 	end
 
-	it "parses h1 header" do
+	it "parses h1 headers" do
 		parser = LayDownParser.new
 
 		text =<<'END'
@@ -65,6 +65,89 @@ This is an underlined header
 # This is a tagged header
 
 # This is a header with a closing tag #
+
+That's it.
+END
+		
+		expect(parser.parse(text)).to_not eq(nil)
+	end
+
+	it "parses h2 headers" do
+		parser = LayDownParser.new
+
+		text =<<'END'
+This is a paragraph.
+
+This is an underlined header
+----------------------------
+
+## This is a tagged header
+
+## This is a header with a closing tag #
+
+That's it.
+END
+		
+		expect(parser.parse(text)).to_not eq(nil)
+	end
+
+	it "parses h3 headers" do
+		parser = LayDownParser.new
+
+		text =<<'END'
+This is a paragraph.
+
+### This is a tagged header
+
+### This is a header with a closing tag ###
+
+That's it.
+END
+		
+		expect(parser.parse(text)).to_not eq(nil)
+	end
+
+	it "parses h4 headers" do
+		parser = LayDownParser.new
+
+		text =<<'END'
+This is a paragraph.
+
+#### This is a tagged header
+
+#### This is a header with a closing tag ###
+
+That's it.
+END
+		
+		expect(parser.parse(text)).to_not eq(nil)
+	end
+
+	it "parses h5 headers" do
+		parser = LayDownParser.new
+
+		text =<<'END'
+This is a paragraph.
+
+##### This is a tagged header
+
+##### This is a header with a closing tag ###
+
+That's it.
+END
+		
+		expect(parser.parse(text)).to_not eq(nil)
+	end
+
+	it "parses h6 headers" do
+		parser = LayDownParser.new
+
+		text =<<'END'
+This is a paragraph.
+
+###### This is a tagged header
+
+###### This is a header with a closing tag ###
 
 That's it.
 END
