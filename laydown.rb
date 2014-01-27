@@ -16,10 +16,10 @@ BUT THIS IS A CODE BLOCK
 
 INTERVENING PARAGRAPH
 
-    And here is another
+		And here is another
 	and it might have a couple
 	different ways of handling identation
-    which vim makes kind of confusing
+		which vim makes kind of confusing
 
 you all can suck a dick.
 
