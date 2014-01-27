@@ -1,6 +1,7 @@
+TODO
+----
 - Make the syntax concrete then modify or design the grammar to fit it.
 - Write unit tests for the syntax as it is implemented.
-- Rewrite 
 - Lists
 - Horizontal Rules?
 - Citations
@@ -12,3 +13,10 @@
 - Literal latex embedding
 - Code syntax highlighting
 - A prettier table syntax
+
+Done
+----
+- Paragraphs
+- Inline block parsing
+- Inline math parsing
+- Header parsing

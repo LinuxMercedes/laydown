@@ -17,7 +17,6 @@ grammar LayDown
 	end
 
 # Text is everything that doesn't contain an unescaped ` or $.
-# TODO: probably a lot more format parsing here
 	rule text
 		(('\`' / '\$' / [^$`\n])+)
 	end
