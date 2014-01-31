@@ -1,10 +1,4 @@
-require 'polyglot'
-require 'treetop'
-require_relative 'nodes.rb'
-
-Treetop.load "laydown"
-
-parser = LayDownParser.new
+require_relative 'parser.rb'
 
 text = <<'END'
 this text is in a beautiful paragraph and there's nothing you can do about it.
@@ -34,14 +28,5 @@ text.split("\n").each { |l|
 	puts l
 }
 
-result = parser.parse(text)
-if result
-	puts 'successs'
-	p result
-else
-	puts 'failure'
-	puts parser.failure_reason
-	puts parser.failure_line
-	puts parser.failure_column
-end
+p Parser.parse(text)
 
