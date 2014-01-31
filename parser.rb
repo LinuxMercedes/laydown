@@ -12,7 +12,10 @@ class Parser
 			raise Exception, "Parse error at #{@@parser.failure_line}, column #{@@parser.failure_column}, because of #{@@parser.failure_reason}"
 		end
 
+		p result
+
 		return result
 	end
+
 end
 
