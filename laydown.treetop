@@ -3,22 +3,22 @@ grammar LayDown
 	# root node
 	# chomps extra newlines
 	rule laydown
-		((header / codeblock / paragraph)* ([\n] / eof)) <Laydown>
+		(header / codeblock / paragraph)* ([\n] / eof) <Laydown>
 	end
 
 	# A paragraph
 	rule paragraph
-		(line+ ([\n] / eof)) <Paragraph>
+		line+ ([\n] / eof) <Paragraph>
 	end
 
 	# Lines are text or inline code plus a newline
 	rule line
-		((text / inlineblock / inlinemath)+ ([\n] / eof)) <Line>
+		(text / inlineblock / inlinemath)+ ([\n] / eof) <Line>
 	end
 
 	# Text is everything that doesn't contain an unescaped ` or $.
 	rule text
-		(('\`' / '\$' / [^$`\n])+) <Text>
+		('\`' / '\$' / [^$`\n])+ <Text>
 	end
 
 	# An inline block looks like one of the following:
@@ -28,19 +28,19 @@ grammar LayDown
 	# `code-directive, actual code`
 	# `code-directive, actual code, with escaped \``
 	rule inlineblock
-		('`' ([^\s,]+ ',')? ('\`' / [^`\n])* '`') <InlineBlock>
+		'`' ([^\s,]+ ',')? ('\`' / [^`\n])* '`' <InlineBlock>
 	end
 
 	# Inline math looks like
 	# $ math syntax $
 	# $$
 	rule inlinemath
-		('$' ('\$' / [^$\n])* '$') <InlineMath>
+		'$' ('\$' / [^$\n])* '$' <InlineMath>
 	end
 
 	# A header
 	rule header
-		((h1 / h2 / h3 / h4 / h5 / h6) [\n]*) <Header>
+		(h1 / h2 / h3 / h4 / h5 / h6) [\n]* <Header>
 	end
 
 	# H1 can be denoted either as
@@ -70,19 +70,19 @@ grammar LayDown
 	# -or-
 	# ### line of text #####
 	rule h3
-		('###' [\s]+ (text / inlineblock)+ '#'* [\n]) <H3>
+		'###' [\s]+ (text / inlineblock)+ '#'* [\n] <H3>
 	end
 
 	rule h4
-		('####' [\s]+ (text / inlineblock)+ '#'* [\n]) <H4>
+		'####' [\s]+ (text / inlineblock)+ '#'* [\n] <H4>
 	end
 
 	rule h5
-		('#####' [\s]+ (text / inlineblock)+ '#'* [\n]) <H5>
+		'#####' [\s]+ (text / inlineblock)+ '#'* [\n] <H5>
 	end
 
 	rule h6
-		('######' [\s]+ (text / inlineblock)+ '#'* [\n]) <H6>
+		'######' [\s]+ (text / inlineblock)+ '#'* [\n] <H6>
 	end
 
 	# Code Blocks are either denoted with ``` on it's own line or indented four spaces/one tab
@@ -92,7 +92,7 @@ grammar LayDown
 
 	# End of file just means there's nothing left to parse
 	rule eof
-		(!.)
+		!.
 	end
 
 end
