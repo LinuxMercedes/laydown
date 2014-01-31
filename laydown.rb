@@ -28,5 +28,5 @@ text.split("\n").each { |l|
 	puts l
 }
 
-Parser.parse(text).render
+puts Parser.parse(text).render
 

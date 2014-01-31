@@ -87,7 +87,7 @@ grammar LayDown
 
 	# Code Blocks are either denoted with ``` on it's own line or indented four spaces/one tab
 	rule codeblock
-		('```' [^\s\n]* "\n" (!("\n```\n\n") . )* "\n```\n\n") / ((('    ' / [\t]) (![\n] .)* [\n])+ [\n]) <CodeBlock>
+		('```' [^\s\n]* "\n" (!("\n```\n\n") . )* "\n```\n\n") <CodeBlock> / ((('    ' / [\t]) (![\n] .)* [\n])+ [\n]) <CodeBlock>
 	end
 
 	# End of file just means there's nothing left to parse

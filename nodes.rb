@@ -1,7 +1,13 @@
 class Treetop::Runtime::SyntaxNode
 	def render
+		return render_children
+	end
+
+	def render_children
 		if elements
-			elements.map { |e| e.render }
+			return elements.map { |e| e.render }.join
+		else
+			return ''
 		end
 	end
 end
@@ -9,155 +15,85 @@ end
 module LayDown
 	class Laydown < Treetop::Runtime::SyntaxNode
 		def render
-			puts "LayDown"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'Laydown ' + render_children
 		end
 	end
 
 	class Paragraph < Treetop::Runtime::SyntaxNode
 		def render
-			puts "Paragraph"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'Paragraph ' + render_children
 		end
 	end
 
 	class Line < Treetop::Runtime::SyntaxNode
 		def render
-			puts "Line"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'Line ' + render_children
 		end
 	end
 
 	class Text < Treetop::Runtime::SyntaxNode
 		def render
-			puts "Text"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'Text ' + render_children
 		end
 	end
 
 	class InlineBlock < Treetop::Runtime::SyntaxNode
 		def render
-			puts "InlineBlock"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'InlineBlock ' + render_children
 		end
 	end
 
 	class InlineMath < Treetop::Runtime::SyntaxNode
 		def render
-			puts "InlineMath"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'InlineMath ' + render_children
 		end
 	end
 
 	class Header < Treetop::Runtime::SyntaxNode
 		def render
-			puts "Header"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'Header ' + render_children
 		end
 	end
 
 	class H1 < Treetop::Runtime::SyntaxNode
 		def render
-			puts "H1"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'H1 ' + render_children
 		end
 	end
 
 	class H2 < Treetop::Runtime::SyntaxNode
 		def render
-			puts "H2"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'H2 ' + render_children
 		end
 	end
 
 	class H3 < Treetop::Runtime::SyntaxNode
 		def render
-			puts "H3"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'H3 ' + render_children
 		end
 	end
 
 	class H4 < Treetop::Runtime::SyntaxNode
 		def render
-			puts "H4"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'H4 ' + render_children
 		end
 	end
 
 	class H5 < Treetop::Runtime::SyntaxNode
 		def render
-			puts "H5"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'H5 ' + render_children
 		end
 	end
 
 	class H6 < Treetop::Runtime::SyntaxNode
 		def render
-			puts "H6"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'H6 ' + render_children
 		end
 	end
 
 	class CodeBlock < Treetop::Runtime::SyntaxNode
 		def render
-			puts "CodeBlock"
-			if elements
-				elements.map { |e|
-					e.render
-				}
-			end
+			return 'CodeBlock ' + render_children
 		end
 	end
 end
