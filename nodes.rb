@@ -1,3 +1,10 @@
+class Treetop::Runtime::SyntaxNode
+	def render
+		if elements
+			elements.map { |e| e.render }
+		end
+	end
+end
 
 module LayDown
 	class Laydown < Treetop::Runtime::SyntaxNode
