@@ -1,5 +1,6 @@
 require 'polyglot'
 require 'treetop'
+require_relative 'nodes.rb'
 
 Treetop.load "laydown"
 

@@ -1,95 +1,96 @@
 grammar LayDown
 
-# root node
-# chomps extra newlines
+	# root node
+	# chomps extra newlines
 	rule laydown
-		((header / codeblock / paragraph)* ([\n] / eof))
+		((header / codeblock / paragraph)* ([\n] / eof)) <Laydown>
 	end
 
-# A paragraph
+	# A paragraph
 	rule paragraph
-	  (line+ ([\n] / eof))
+		(line+ ([\n] / eof)) <Paragraph>
 	end
 
-# Lines are text or inline code plus a newline
+	# Lines are text or inline code plus a newline
 	rule line
-		((text / inlineblock / inlinemath)+ ([\n] / eof))
+		((text / inlineblock / inlinemath)+ ([\n] / eof)) <Line>
 	end
 
-# Text is everything that doesn't contain an unescaped ` or $.
+	# Text is everything that doesn't contain an unescaped ` or $.
 	rule text
-		(('\`' / '\$' / [^$`\n])+)
+		(('\`' / '\$' / [^$`\n])+) <Text>
 	end
 
-# An inline block looks like one of the following:
-# ``
-# `some inline stuff`
-# `inline stuff with escaped \``
-# `code-directive, actual code`
-# `code-directive, actual code, with escaped \``
+	# An inline block looks like one of the following:
+	# ``
+	# `some inline stuff`
+	# `inline stuff with escaped \``
+	# `code-directive, actual code`
+	# `code-directive, actual code, with escaped \``
 	rule inlineblock
-		('`' ([^\s,]+ ',')? ('\`' / [^`\n])* '`')
+		('`' ([^\s,]+ ',')? ('\`' / [^`\n])* '`') <InlineBlock>
 	end
 
-# Inline math looks like
-# $ math syntax $
-# $$
+	# Inline math looks like
+	# $ math syntax $
+	# $$
 	rule inlinemath
-		('$' ('\$' / [^$\n])* '$')
+		('$' ('\$' / [^$\n])* '$') <InlineMath>
 	end
 
-# A header
+	# A header
 	rule header
-		(h1 / h2 / h3 / h4 / h5 / h6) [\n]*
+		((h1 / h2 / h3 / h4 / h5 / h6) [\n]*) <Header>
 	end
 
-# H1 can be denoted either as
-# line of text
-# ============
-# -or-
-# # line of text
-# -or-
-# # line of text #
+	# H1 can be denoted either as
+	# line of text
+	# ============
+	# -or-
+	# # line of text
+	# -or-
+	# # line of text #
 	rule h1
-		(line '='+ [\n]) / ('#' [\s]+ (text / inlineblock)+ '#'* [\n])
+		(line '='+ [\n]) / ('#' [\s]+ (text / inlineblock)+ '#'* [\n]) <H1>
 	end
 
-# H2 can be denoted either as
-# line of text
-# ------------
-# -or-
-# ## line of text
-# -or-
-# ## line of text ####
+	# H2 can be denoted either as
+	# line of text
+	# ------------
+	# -or-
+	# ## line of text
+	# -or-
+	# ## line of text ####
 	rule h2
-		(line '-'+ [\n] / '##' [\s]+ (text / inlineblock)+ '#'* [\n])
+		(line '-'+ [\n]) / ('##' [\s]+ (text / inlineblock)+ '#'* [\n]) <H2>
 	end
 
-# H3 and on can be written as
-# ### line of text
-# -or-
-# ### line of text #####
+	# H3 and on can be written as
+	# ### line of text
+	# -or-
+	# ### line of text #####
 	rule h3
-	  ('###' [\s]+ (text / inlineblock)+ '#'* [\n])
+		('###' [\s]+ (text / inlineblock)+ '#'* [\n]) <H3>
 	end
 
 	rule h4
-	  ('####' [\s]+ (text / inlineblock)+ '#'* [\n])
+		('####' [\s]+ (text / inlineblock)+ '#'* [\n]) <H4>
 	end
 
 	rule h5
-	  ('#####' [\s]+ (text / inlineblock)+ '#'* [\n])
+		('#####' [\s]+ (text / inlineblock)+ '#'* [\n]) <H5>
 	end
 
 	rule h6
-	  ('######' [\s]+ (text / inlineblock)+ '#'* [\n])
+		('######' [\s]+ (text / inlineblock)+ '#'* [\n]) <H6>
 	end
 
+	# Code Blocks are either denoted with ``` on it's own line or indented four spaces/one tab
 	rule codeblock
-		(('```' [^\s\n]* "\n" (!("\n```\n\n") . )* "\n```\n\n") / ((('    ' / [\t]) (![\n] .)* [\n])+ [\n]))
+		('```' [^\s\n]* "\n" (!("\n```\n\n") . )* "\n```\n\n") / ((('    ' / [\t]) (![\n] .)* [\n])+ [\n]) <CodeBlock>
 	end
 
-# End of file just means there's nothing left to parse
+	# End of file just means there's nothing left to parse
 	rule eof
 		(!.)
 	end
