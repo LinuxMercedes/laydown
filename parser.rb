@@ -1,9 +1,8 @@
-require 'polyglot'
 require 'treetop'
 require_relative 'nodes.rb'
 
 class Parser
-	Treetop.load "laydown"
+	Treetop.load "laydown.treetop"
 	@@parser = LayDownParser.new
 
 	def self.parse(data)
