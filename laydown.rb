@@ -16,7 +16,7 @@ INTERVENING PARAGRAPH
 	different ways of handling identation
 		which vim makes kind of confusing
 
-you all can suck a dick.
+last line.
 
 END
 
